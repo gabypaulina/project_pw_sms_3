@@ -73,7 +73,7 @@ if(isset($_POST["register"])){
         <div class="row bg-secondary py-2 px-xl-5 justify-content-end">
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark px-2" href="inde.php">
+                    <a class="text-dark px-2" href="index.php">
                         Go To Shop
                     </a>
                     <a class="text-dark px-2" href="">

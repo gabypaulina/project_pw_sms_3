@@ -114,7 +114,7 @@
             const newItem = [{namaItem: $('#namaItem').html(), qty: $('#qtyItem').val()}];
             Cookies.set('cart', JSON.stringify(newItem));
         }
-        window.location.href = 'inde.php';
+        window.location.href = 'index.php';
         alert('success menambahkan item ke dalan keranjang');
     });
     

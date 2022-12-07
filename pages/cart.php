@@ -116,7 +116,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="home.php" class="nav-item nav-link">Home</a>
-                            <a href="inde.php" class="nav-item nav-link">Shop</a>
+                            <a href="index.php" class="nav-item nav-link">Shop</a>
                             <a href="checkout.php" class="nav-item nav-link">Checkout</a>
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
                         </div>
@@ -227,7 +227,7 @@
                             </form>
                         </td>
                         <td class="align-middle">-</td>
-                        <td class="align-middle"><a href="inde.php"><button class="btn btn-sm btn-secondary">Buy Now</button></a></td>
+                        <td class="align-middle"><a href="index.php"><button class="btn btn-sm btn-secondary">Buy Now</button></a></td>
                     </tr>
                     <?php
                     }
@@ -294,7 +294,7 @@
                         <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-dark mb-2" href="home.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="inde.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
                             <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                             <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                             <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>

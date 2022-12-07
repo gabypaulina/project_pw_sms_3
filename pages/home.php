@@ -52,7 +52,7 @@ $result = mysqli_query($conn,"SELECT * from img");
                 </a>
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <a href="inde.php" class="nav-item nav-link">Shop</a>
+                        <a href="index.php" class="nav-item nav-link">Shop</a>
                          <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -106,7 +106,7 @@ $result = mysqli_query($conn,"SELECT * from img");
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Welcome to our Homepage</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a href="inde.php">Shop</a></p>
+                <p class="m-0"><a href="index.php">Shop</a></p>
                 <p class="m-0 px-2">-</p>
                 <p class="m-0">Home</p>
             </div>
@@ -289,7 +289,7 @@ $result = mysqli_query($conn,"SELECT * from img");
                     <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-dark mb-2" href="home.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-dark mb-2" href="inde.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                        <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
                         <a class="text-dark mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                         <a class="text-dark mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                         <a class="text-dark" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
