@@ -101,22 +101,5 @@
         button.parent().parent().find('input').val(newVal);
     });
     
-    $('#btnAddToCart').on('click', function() {
-        const currentCartItems = Cookies.get('cart');
-        if (currentCartItems) {
-            const oldItemsCart =  JSON.parse(currentCartItems);
-            const items = [...oldItemsCart, {namaItem: $('#namaItem').html(), qty: $('#qtyItem').val()}];
-                        
-            console.log('oldItemsCart', oldItemsCart);
-            console.log('oldItemsCart', items);
-            Cookies.set('cart', JSON.stringify(items));
-        } else {
-            const newItem = [{namaItem: $('#namaItem').html(), qty: $('#qtyItem').val()}];
-            Cookies.set('cart', JSON.stringify(newItem));
-        }
-        window.location.href = 'index.php';
-        alert('success menambahkan item ke dalan keranjang');
-    });
-    
 })(jQuery);
 

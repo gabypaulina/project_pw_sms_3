@@ -102,7 +102,6 @@ $result = mysqli_query($conn,"SELECT * from img");
                                         </span>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
@@ -206,11 +205,9 @@ $result = mysqli_query($conn,"SELECT * from img");
                                 "jumlah" => $jumlah
                             ];
                             if(isset($_SESSION["shopping"])){
-                                echo"<script>alert('Added to Shopping Cart')</script>";
                                 array_push($_SESSION["shopping"],$new);
                             }else{
                                 $_SESSION["shopping"] = [];
-                                echo"<script>alert('Added to Shopping Cart')</script>";
                                 array_push($_SESSION["shopping"],$new);
                             }
                         }; 
