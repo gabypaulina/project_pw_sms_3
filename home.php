@@ -87,8 +87,8 @@ $result = mysqli_query($conn,"SELECT * from img");
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-transparent text-primary">
                                         <input type="text" class="form-control border-none"
-                                            placeholder="Search for products" name="nama">
-                                        <button class="btn btn-outline" name="search"><img src="img/search.svg" alt=""
+                                            placeholder="Search for products" name="search">
+                                        <button class="btn btn-outline"><img src="img/search.svg" alt=""
                                                 width="24px" /></button>
                                     </span>
                                 </div>
@@ -128,11 +128,16 @@ $result = mysqli_query($conn,"SELECT * from img");
                 </div>
                 <div class="row px-xl-5 pb-3">
                     <?php  
-        $query = "SELECT * FROM img order by id ASC LIMIT 8";     
-        $rs_result = mysqli_query ($conn, $query);       
-        while($row = mysqli_fetch_array($rs_result)){  
+                            if(isset($_GET["search"])) {
+                                $keyword = $_GET["search"];
+                                $query = "SELECT * FROM img WHERE namaItem LIKE '%$keyword%' order by id ASC LIMIT 8";
+                            } else {
+                                $query = "SELECT * FROM img order by id ASC LIMIT 8";  
+                            }   
+                        $rs_result = mysqli_query ($conn, $query);       
+                        while($row = mysqli_fetch_array($rs_result)){  
 
-    ?>
+                    ?>
                     <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
                             <div
@@ -218,10 +223,15 @@ $result = mysqli_query($conn,"SELECT * from img");
                     </div>
                     <div class="row px-xl-5 pb-3">
                         <?php  
-        $query = "SELECT * FROM img order by id DESC LIMIT 6";     
-        $rs_result = mysqli_query ($conn, $query);       
-        while($row = mysqli_fetch_array($rs_result)){  
-    ?>
+                            if(isset($_GET["search"])) {
+                                $keyword = $_GET["search"];
+                                $query = "SELECT * FROM img WHERE namaItem LIKE '%$keyword%' order by id DESC LIMIT 6";
+                            } else {                             
+                                $query = "SELECT * FROM img order by id DESC LIMIT 6";     
+                            } 
+                            $rs_result = mysqli_query ($conn, $query);       
+                            while($row = mysqli_fetch_array($rs_result)){  
+                        ?>
                         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                             <div class="card product-item border-0 mb-4">
                                 <div

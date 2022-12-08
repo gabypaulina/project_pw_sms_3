@@ -96,8 +96,8 @@ $result = mysqli_query($conn,"SELECT * from img");
                                     <div class="input-group-append">
                                         <span class="input-group-text bg-transparent text-primary">
                                             <input type="text" class="form-control border-none"
-                                                placeholder="Search for products" name="nama">
-                                            <button class="btn btn-outline" name="search"><img src="img/search.svg"
+                                                placeholder="Search for products" name="search">
+                                            <button class="btn btn-outline"><img src="img/search.svg"
                                                     alt="" width="24px" /></button>
                                         </span>
                                     </div>
@@ -146,7 +146,12 @@ $result = mysqli_query($conn,"SELECT * from img");
                             $page=1;    
                             }  
                             $start_from = ($page-1) * $per_page_record;
-                            $query = "SELECT * FROM img LIMIT $start_from, $per_page_record";     
+                            if(isset($_GET["search"])) {
+                                $keyword = $_GET["search"];
+                                $query = "SELECT * FROM img WHERE namaItem LIKE '%$keyword%' LIMIT $start_from, $per_page_record";
+                            } else {
+                                $query = "SELECT * FROM img LIMIT $start_from, $per_page_record";     
+                            }
                             $rs_result = mysqli_query ($conn, $query);       
 
                             while($row = mysqli_fetch_array($rs_result)){  
