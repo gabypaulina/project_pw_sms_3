@@ -19,8 +19,8 @@ if(isset($_POST["register"])){
     }else if($password!=$confirm){
       echo "<script>alert('Confrim password doesn't match');</script>";
     }else if(!$ada){
-      if($password===$confirm && $email!="admin"){
-        mysqli_query($conn,"INSERT into user values('$nama','$email','$password')");
+      if($password==$confirm && $email!="admin"){
+        mysqli_query($conn,"INSERT INTO `user` ( `nama`, `email`, `password`) VALUES ('$nama', '$email', '$password')");
         header("Location: login.php");
         }
     }else if($email=="admin"){

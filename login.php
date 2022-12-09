@@ -17,8 +17,11 @@ if(isset($_POST["login"])){
           if($pass == $row["password"]){
             unset($_SESSION["auth"]);
               $_SESSION["auth"] = true;
-              header("Location: home.php");
-          }else if($user=="" || $pass==""){
+              $result = mysqli_query($conn,"SELECT * from user WHERE email = '$email'");
+              $user = mysqli_fetch_array($result);
+              setcookie("user", $user["nama"], time()+3600*24*30, "/");
+              ?><script type="text/javascript">location.href = 'home.php';</script><?php
+          }else if($email=="" || $pass==""){
             echo "<script>alert('Please fill all the form');</script>";
           }else{
              echo "<script>alert('Password is incorrect');</script>";          
