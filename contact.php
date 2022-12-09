@@ -118,18 +118,32 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link active">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                        <?php
+                        <div class="navbar-nav ml-auto py-0"> <?php
                             $logout = "Login";
+                            $register = "Register";
                             if(isset($_SESSION["auth"])){
                                 if($_SESSION["auth"]==true){
                                     $logout = "Logout";
-                                    unset($_SESSION["auth"]);
+                                    if(isset($_COOKIE["user"])) {
+                                        $register = $_COOKIE["user"];
+                                    }
+                                }
+                            }
+
+                            if(isset($_POST["logout"])) {
+                                if(isset($_SESSION["auth"])){
+                                    session_destroy();
+                                    $logout = "Login";
+                                    $register = "Register";
+                                } else {
+                                    ?><script type="text/javascript">location.href = 'login.php';</script><?php
                                 }
                             }
                             ?>
-                            <a href="login.php" class="nav-item nav-link"><?=$logout?></a>
-                            <a href="regsiter.php" class="nav-item nav-link">Register</a>
+                            <form action="" method="post" class="d-flex">
+                                <a href="register.php" class="nav-item nav-link" style="text-transform: capitalize;"><?=$register?></a>
+                                <button name="logout" class="btn btn-naked"><?=$logout?></button>
+                            </form>
                         </div>
                     </div>
                 </nav>
