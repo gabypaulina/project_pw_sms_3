@@ -38,10 +38,11 @@ CREATE TABLE `kategori`(
 
 drop table if exists`user`;
 CREATE TABLE `user`(
+	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`nama` VARCHAR (50) NOT NULL,
 	`email` VARCHAR (50) NOT NULL,
 	`password` VARCHAR (50) NOT NULL,
-	PRIMARY KEY (`email`)
+	PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 
