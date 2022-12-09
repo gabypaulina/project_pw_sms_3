@@ -7,7 +7,7 @@ if(isset($_POST["login"])){
     $pass = $_POST["password"];
     $email = $_POST["email"];
     if($email=="admin" && $pass=="admin"){
-        header("Location: admin.php");
+        header("Location: /admin");
     }
     $ada = false;
   
@@ -20,7 +20,7 @@ if(isset($_POST["login"])){
               $result = mysqli_query($conn,"SELECT * from user WHERE email = '$email'");
               $user = mysqli_fetch_array($result);
               setcookie("user", $user["nama"], time()+3600*24*30, "/");
-              ?><script type="text/javascript">location.href = 'home.php';</script><?php
+              ?><script type="text/javascript">location.href = 'index.php';</script><?php
           }else if($email=="" || $pass==""){
             echo "<script>alert('Please fill all the form');</script>";
           }else{
