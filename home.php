@@ -41,7 +41,7 @@ $result = mysqli_query($conn,"SELECT * from img");
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="" class="text-decoration-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span
-                            class="text-primary font-weight-bold border px-3 mr-1">Cake</span>Zone</h1>
+                            class="text-primary font-weight-bold border px-3 mr-1">Rawr</span>Cake</h1>
                 </a>
             </div>
         </div>

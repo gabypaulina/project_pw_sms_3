@@ -45,7 +45,7 @@ $result = mysqli_query($conn,"SELECT * from img");
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="" class="text-decoration-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span
-                            class="text-primary font-weight-bold border px-3 mr-1">Cake</span>Zone</h1>
+                            class="text-primary font-weight-bold border px-3 mr-1">Rawr</span>Cake</h1>
                 </a>
             </div>
 
@@ -249,20 +249,20 @@ $result = mysqli_query($conn,"SELECT * from img");
                             $pagLink = "";       
 
                             if($page>=2){   
-                                echo "<a class='page-link' href='inde.php?page=".($page-1)."'>  Prev </a>";   
+                                echo "<a class='page-link' href='index.php?page=".($page-1)."'>  Prev </a>";   
                             }     
                             $i = 1;           
                             while ($i<=$total_pages ) {      
                                 $pagLink =$i;
                         
                         ?>
-                        <li class="page-item"><a class="page-link" href="inde.php?page=<?=$pagLink?>"><?=$pagLink?></a>
+                        <li class="page-item"><a class="page-link" href="index.php?page=<?=$pagLink?>"><?=$pagLink?></a>
                         </li>
                         <?php 
                             $i++;
                             }; 
                             if($page<$total_pages){   
-                                echo "<a class='page-link' href='inde.php?page=".($page+1)."'>  Next </a>";   
+                                echo "<a class='page-link' href='index.php?page=".($page+1)."'>  Next </a>";   
                             }   
                         ?>
                     </ul>
@@ -292,7 +292,7 @@ $result = mysqli_query($conn,"SELECT * from img");
                                 <div class="d-flex flex-column justify-content-start">
                                     <a class="text-dark mb-2" href="home.php"><i
                                             class="fa fa-angle-right mr-2"></i>Home</a>
-                                    <a class="text-dark mb-2" href="inde.php"><i class="fa fa-angle-right mr-2"></i>Our
+                                    <a class="text-dark mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Our
                                         Shop</a>
                                     <a class="text-dark mb-2" href="cart.php"><i
                                             class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
