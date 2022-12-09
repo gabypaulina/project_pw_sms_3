@@ -108,7 +108,7 @@
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">Rawr</span>Cake</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
@@ -120,18 +120,32 @@
                             <a href="checkout.php" class="nav-item nav-link">Checkout</a>
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                        <?php
+                        <div class="navbar-nav ml-auto py-0"><?php
                             $logout = "Login";
+                            $register = "Register";
                             if(isset($_SESSION["auth"])){
                                 if($_SESSION["auth"]==true){
                                     $logout = "Logout";
-                                    unset($_SESSION["auth"]);
+                                    if(isset($_COOKIE["user"])) {
+                                        $register = $_COOKIE["user"];
+                                    }
+                                }
+                            }
+
+                            if(isset($_POST["logout"])) {
+                                if(isset($_SESSION["auth"])){
+                                    session_destroy();
+                                    $logout = "Login";
+                                    $register = "Register";
+                                } else {
+                                    ?><script type="text/javascript">location.href = 'login.php';</script><?php
                                 }
                             }
                             ?>
-                            <a href="login.php" class="nav-item nav-link"><?=$logout?></a>
-                            <a href="register.php" class="nav-item nav-link">Register</a>
+                            <form action="" method="post" class="d-flex">
+                                <a href="register.php" class="nav-item nav-link" style="text-transform: capitalize;"><?=$register?></a>
+                                <button name="logout" class="btn btn-naked"><?=$logout?></button>
+                            </form>
                         </div>
                     </div>
                 </nav>

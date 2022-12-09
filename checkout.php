@@ -2,7 +2,6 @@
     require_once("hub.php");
     $result = mysqli_query($conn,"SELECT * from img");
     
-    $_SESSION['auth'] = false;
     if(isset($_POST['order'])){
         if(isset($_SESSION["auth"])){
             if($_SESSION["auth"]==true){

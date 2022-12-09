@@ -1,8 +1,6 @@
 <?php
     require_once("hub.php");
-    require_once("toast.php");
-$result = mysqli_query($conn,"SELECT * from img");
-
+    $result = mysqli_query($conn,"SELECT * from img");
 ?>
 
 <!DOCTYPE html>
