@@ -29,7 +29,13 @@
                     });
                 </script>
                 <?php
-                header("Location: payment.php");
+                if(isset($_GET['payment'])) {
+                    if($_GET['payment'] == 'COD') {
+                        header("Location: payment.php");
+                    } else {
+                        header("Location: payment.php");
+                    }
+                }
             }else{
                 header("Location: login.php");
             }
