@@ -5,7 +5,7 @@
     if(isset($_POST['order'])){
         if(isset($_SESSION["auth"])){
             if($_SESSION["auth"]==true){
-                echo "<script>alert('berhasil')</script>";
+                header("Location: payment.php");
             }else{
                 header("Location: login.php");
             }
@@ -133,145 +133,99 @@
 
 
     <!-- Checkout Start -->
-    <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
-            <div class="col-lg-8">
-                <div class="mb-4">
-                    <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="Susi">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Laksamana">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="susi@gmail.com">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Mobile Number</label>
-                            <input class="form-control" type="text" placeholder="08134572926">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address</label>
-                            <input class="form-control" type="text" placeholder="Ngagel Madya">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address Number</label>
-                            <input class="form-control" type="text" placeholder="No. 28">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" type="text" placeholder="Surabaya">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>POS Code</label>
-                            <input class="form-control" type="text" placeholder="60284">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="shipto">
-                                <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+    <form method="GET">
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5">
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label>First Name</label>
+                                <input name="firstName" class="form-control" type="text" placeholder="Susi">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Last Name</label>
+                                <input name="lastName" class="form-control" type="text" placeholder="Laksamana">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>E-mail</label>
+                                <input name="email" class="form-control" type="text" placeholder="susi@gmail.com">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Mobile Number</label>
+                                <input name="mobileNumber" class="form-control" type="text" placeholder="08134572926">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Address</label>
+                                <input name="address" class="form-control" type="text" placeholder="Ngagel Madya">
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>POS Code</label>
+                                <input name="posCode" class="form-control" type="text" placeholder="60284">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="collapse mb-4" id="shipping-address">
-                    <h4 class="font-weight-semi-bold mb-4">Shipping Address</h4>
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
+                <div class="col-lg-4">
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Order Total</h4>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" type="text" placeholder="Jakarta">
-                        </div>
-                       
-                        <div class="col-md-6 form-group">
-                            <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Order Total</h4>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="font-weight-medium mb-3">Products</h5>
-                        <?php
-                            foreach($_SESSION['shopping'] as $shop){
+                        <div class="card-body">
+                            <h5 class="font-weight-medium mb-3">Products</h5>
+                            <?php
+                                foreach($_SESSION['shopping'] as $shop){
 
-                       ?>
-                        <div class="d-flex justify-content-between">
-                            <p><?=$shop['namaItem']?></p>
-                            <p>Rp.<?=$shop['jumlah']*$shop['harga']?></p>
+                        ?>
+                            <div class="d-flex justify-content-between">
+                                <p><?=$shop['namaItem']?></p>
+                                <p>Rp.<?=$shop['jumlah']*$shop['harga']?></p>
+                            </div>
+                        <?php
+                                }
+                        ?>
+                            <hr class="mt-0">
+                            <div class="d-flex justify-content-between mb-3 pt-1">
+                                <h6 class="font-weight-medium">Subtotal</h6>
+                                <h6 class="font-weight-medium">Rp.<?=$_SESSION['total']-10000?></h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <h6 class="font-weight-medium">Shipping</h6>
+                                <h6 class="font-weight-medium">Rp.10.000</h6>
+                            </div>
                         </div>
-                       <?php
-                            }
-                       ?>
-                        <hr class="mt-0">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">Rp.<?=$_SESSION['total']-10000?></h6>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">Rp.10.000</h6>
-                        </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">Rp.<?=$_SESSION['total']?></h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Payment</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer" value="">
-                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                        <div class="card-footer border-secondary bg-transparent">
+                            <div class="d-flex justify-content-between mt-2">
+                                <h5 class="font-weight-bold">Total</h5>
+                                <h5 class="font-weight-bold">Rp.<?=$_SESSION['total']?></h5>
                             </div>
                         </div>
                     </div>
+                    <div class="card border-secondary mb-5">
+                        <div class="card-header bg-secondary border-0">
+                            <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer" value="bank">
+                                    <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer" value="COD">
+                                    <label class="custom-control-label" for="banktransfer">COD</label>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-footer border-secondary bg-transparent">
                             <button id="btnOrder" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
     <!-- Checkout End -->
 
 
