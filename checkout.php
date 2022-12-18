@@ -2,9 +2,33 @@
     require_once("hub.php");
     $result = mysqli_query($conn,"SELECT * from img");
     
-    if(isset($_POST['order'])){
+    if(isset($_GET['order'])){
         if(isset($_SESSION["auth"])){
             if($_SESSION["auth"]==true){
+                ?>
+                <script type="text/javascript">
+                    const Url = "https://api.sandbox.midtrans.com/v2/token";
+                    
+                    console.log("btn clicked");
+                    $.ajax({
+                        url: Url,
+                        method: "GET",
+                        accepts: "application/json",
+                        data: $.param({
+                            client_key: "SB-Mid-client-pvndhZ8BVTAp8A5w",
+                            payment_type: "bank_transfer",
+                            gross_amount: 44000,
+                            bank: "bca",
+                        }),
+                        success: function (result) {
+                            console.log(result);
+                        },
+                        error: function (error) {
+                            console.log(`Error ${error}`);
+                        },
+                    });
+                </script>
+                <?php
                 header("Location: payment.php");
             }else{
                 header("Location: login.php");
@@ -219,7 +243,7 @@
                             </div>
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
-                            <button id="btnOrder" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                            <button name="order" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
                         </div>
                     </div>
                 </div>

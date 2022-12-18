@@ -98,26 +98,4 @@
 
     button.parent().parent().find("input").val(newVal);
   });
-
-  const Url = "https://api.sandbox.midtrans.com/v2/token";
-  $("#btnOrder").click(function () {
-    console.log("btn clicked");
-    $.ajax({
-      url: Url,
-      method: "GET",
-      accepts: "application/json",
-      data: $.param({
-        client_key: "SB-Mid-client-pvndhZ8BVTAp8A5w",
-        payment_type: "bank_transfer",
-        gross_amount: 44000,
-        bank: "bca",
-      }),
-      success: function (result) {
-        console.log(result);
-      },
-      error: function (error) {
-        console.log(`Error ${error}`);
-      },
-    });
-  });
 })(jQuery);
