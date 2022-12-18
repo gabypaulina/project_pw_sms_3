@@ -219,31 +219,52 @@ $result = mysqli_query($conn,"SELECT * from img");
             <div class="col-12 pb-1">
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center mb-3">
-                        <?php  
-                            $query = "SELECT COUNT(*) FROM img";     
-                            $rs_result = mysqli_query($conn, $query);     
-                            $row = mysqli_fetch_row($rs_result);     
+                        <?php
+                            $keyword = '';
+                            if(isset($_GET["search"])) {
+                                $keyword = $_GET["search"];
+                                $query = "SELECT COUNT(*) FROM img WHERE namaItem LIKE '%$keyword%'";
+                            } else {
+                                $query = "SELECT COUNT(*) FROM img";     
+                            }
+                            $rs_result = mysqli_query($conn, $query); 
+                            $row = mysqli_fetch_row($rs_result);   
+
                             $total_records = $row[0];     
                             echo "</br>";     
                             // Number of pages required.   
                             $total_pages = ceil($total_records / $per_page_record);     
-                            $pagLink = "";       
+                            $pagLink = "";
 
+                            // prev button
                             if($page>=2){   
-                                echo "<a class='page-link' href='index.php?page=".($page-1)."'>  Prev </a>";   
-                            }     
+                                if(isset($_GET["search"])) {
+                                    echo "<a class='page-link' href='index.php?search=$keyword&page=".($page-1)."'>  Prev </a>";   
+                                }
+                                else {
+                                    echo "<a class='page-link' href='index.php?page=".($page-1)."'>  Prev </a>";   
+                                }
+                            }    
+                             
                             $i = 1;           
                             while ($i<=$total_pages ) {      
-                                $pagLink =$i;
-                        
-                        ?>
-                        <li class="page-item"><a class="page-link" href="index.php?page=<?=$pagLink?>"><?=$pagLink?></a>
-                        </li>
-                        <?php 
+                                $pagLink=$i;
+                                if(isset($_GET["search"])) {
+                                    echo "<li class='page-item'><a class='page-link' href='index.php?search=$keyword&page=".($pagLink)."'>$pagLink</a></li>";   
+                                } else {
+                                    echo "<li class='page-item'><a class='page-link' href='index.php?page=".($pagLink)."'>$pagLink</a></li>";
+                                }
+                       
                             $i++;
                             }; 
+
+                            // next button
                             if($page<$total_pages){   
-                                echo "<a class='page-link' href='index.php?page=".($page+1)."'>  Next </a>";   
+                                if(isset($_GET["search"])) {
+                                    echo "<a class='page-link' href='index.php?search=$keyword&page=".($page+1)."'>  Next </a>";   
+                                } else {
+                                    echo "<a class='page-link' href='index.php?page=".($page+1)."'>  Next </a>";   
+                                }
                             }   
                         ?>
                     </ul>
