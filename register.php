@@ -22,6 +22,7 @@ if(isset($_POST["register"])){
       if($password==$confirm && $email!="admin"){
         mysqli_query($conn,"INSERT INTO `user` ( `nama`, `email`, `password`) VALUES ('$nama', '$email', '$password')");
         header("Location: login.php");
+        die();
         }
     }else if($email=="admin"){
       echo "<script>alert('Error');</script>";

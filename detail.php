@@ -1,4 +1,5 @@
 <?php
+ob_start();
     require_once("hub.php");
     $result = mysqli_query($conn,"SELECT * from img");
     
@@ -128,6 +129,7 @@
         $row = mysqli_fetch_array($rs_result);        
     ?>
     <!-- Shop Detail Start -->
+    <form method="POST">
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
             <div class="col-lg-5 pb-5">
@@ -141,7 +143,7 @@
             </div>
 
             <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold"><?=$row['namaItem']?></h3>
+                <h3 class="font-weight-semi-bold" ><?=$row['namaItem']?></h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -157,26 +159,45 @@
                 
                 <div class="d-flex align-items-center mb-4 pt-2 quantity">
                     <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button id="decQty" class="btn btn-primary btn-minus">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                        <input id="qtyItem" type="text" class="form-control bg-secondary text-center" value="1">
-                        <div class="input-group-btn">
-                            <button id="incQty" class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
+                        <input name="qtyItem" type="text" class="form-control bg-secondary text-center" value="1">
                     </div>
-                    <button id="btnAddToCart" class="btn btn-primary px-3">
+                    <input type="hidden" name="datas" value="<?=$row['namaItem']?>">
+                    <button name="cart" class="btn btn-primary px-3">
                         <i class="fa fa-shopping-cart mr-1"></i>
                         Add To Cart
                     </button>
                 </div>
-                
+                <?php
+                    //  unset($_SESSION["shopping"]);
+                        if(isset($_POST['cart'])){
+                            $datas = $_POST["datas"];
+                            $querys="SELECT * FROM img WHERE namaItem = '$datas'";
+                            $rs_results = mysqli_query ($conn, $querys);       
+                            $rows = mysqli_fetch_array($rs_results);
+                            $namaItem = $rows["namaItem"];
+                            $nama = $rows["nama"];
+                            $harga = $rows["harga"];
+                            $jumlah = $_POST['qtyItem'];
+                            $new = [
+                                "nama" => $nama,
+                                "namaItem" => $namaItem,
+                                "harga" => $harga,
+                                "jumlah" => $jumlah
+                            ];
+                            if(isset($_SESSION["shopping"])){
+                                array_push($_SESSION["shopping"],$new);
+                            }else{
+                                $_SESSION["shopping"] = [];
+                                array_push($_SESSION["shopping"],$new);
+                            }
+                            
+                            header('Location: cart.php');
+                            die();
+                        };
+                    ?>
             </div>
         </div>
+    </form>
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
         <div class="row px-xl-5 pt-2">

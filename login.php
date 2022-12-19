@@ -8,6 +8,7 @@ if(isset($_POST["login"])){
     $email = $_POST["email"];
     if($email=="admin" && $pass=="admin"){
         header("Location: /admin");
+        die();
     }
     $ada = false;
   

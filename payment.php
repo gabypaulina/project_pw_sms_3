@@ -1,6 +1,15 @@
 <?php
     require_once("hub.php");
     $result = mysqli_query($conn,"SELECT * from img");
+
+    if(isset($_GET['method'])) {
+        $orderId = $_GET["orderId"];
+        $nama = $_COOKIE["user"];
+        $paymentMethod = $_GET["method"];
+        $totalHarga = $_GET["price"];
+
+        mysqli_query( $conn,"INSERT INTO `dtrans` (`nama`, `paymentMethod`, `totalHarga`) VALUES ( '$nama', '$paymentMethod', '$totalHarga')");
+    }
 ?>
 
 
@@ -104,29 +113,29 @@
     </div>
     <!-- Navbar End -->
 
-
-    <!-- Page Header Start -->
-    <div class="container-fluid bg-secondary mb-5">
-        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
-            <div class="d-inline-flex">
-                <p class="m-0"><a href="home.php">Home</a></p>
-                <p class="m-0 px-2">-</p>
-                <p class="m-0">Payment</p>
-            </div>
-        </div>
-    </div>
-    <!-- Page Header End -->
-
-
     <!-- Payment Start -->
     <div class="container-fluid pt-5">
-        <div class="row px-xl-5 justify-content-center">
+        <div class="row">
+            <div class="col text-center">
+                <?php
+                    if($_GET['method'] == 'COD') {
+                        echo "<img src='./img/thanks.jpg' alt='thanks image' width='30%' />";
+                    }
+                ?>
+            </div>
+        </div>
+        <div class="row px-xl-5">
             <div class="col">
-                <h1>Virtual Account</h1>
+                <?php
+                if($_GET['method'] == 'COD') {
+                    echo "<h2 class='text-center'>Berhasil membeli dengan metode COD.</h2>";
+                } else {
+                    echo "<h2 class='text-center'>Virtual Account</h2>";
+                }
+                ?>
             </div>
             <?php
-                   
+                   if(isset($_POST['']))
             ?>
         </div>
     </div>

@@ -1,49 +1,6 @@
 <?php
     require_once("hub.php");
     $result = mysqli_query($conn,"SELECT * from img");
-    
-    if(isset($_GET['order'])){
-        if(isset($_SESSION["auth"])){
-            if($_SESSION["auth"]==true){
-                ?>
-                <script type="text/javascript">
-                    const Url = "https://api.sandbox.midtrans.com/v2/token";
-                    
-                    console.log("btn clicked");
-                    $.ajax({
-                        url: Url,
-                        method: "GET",
-                        accepts: "application/json",
-                        data: $.param({
-                            client_key: "SB-Mid-client-pvndhZ8BVTAp8A5w",
-                            payment_type: "bank_transfer",
-                            gross_amount: 44000,
-                            bank: "bca",
-                        }),
-                        success: function (result) {
-                            console.log(result);
-                        },
-                        error: function (error) {
-                            console.log(`Error ${error}`);
-                        },
-                    });
-                </script>
-                <?php
-                if(isset($_GET['payment'])) {
-                    if($_GET['payment'] == 'COD') {
-                        header("Location: payment.php");
-                    } else {
-                        header("Location: payment.php");
-                    }
-                }
-            }else{
-                header("Location: login.php");
-            }
-        }else{
-            header("Location: login.php");
-        }
-    }
-
 ?>
 
 
@@ -107,7 +64,7 @@
                     ?>
                     <form action="" method="post" class="d-flex">
                         <a href="register.php" class="nav-item nav-link" style="text-transform: capitalize;"><?=$register?></a>
-                        <button name="logout" class="btn btn-naked"><?=$logout?></button>
+                        <button id="btnLogout" name="logout" class="btn btn-naked"><?=$logout?></button>
                     </form>
                 </div>
             </div>
@@ -163,7 +120,6 @@
 
 
     <!-- Checkout Start -->
-    <form method="GET">
         <div class="container-fluid pt-5">
             <div class="row px-xl-5">
                 <div class="col-lg-8">
@@ -172,27 +128,27 @@
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label>First Name</label>
-                                <input name="firstName" class="form-control" type="text" placeholder="Susi">
+                                <input name="firstName" class="form-control payment-form" type="text" placeholder="Susi">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Last Name</label>
-                                <input name="lastName" class="form-control" type="text" placeholder="Laksamana">
+                                <input name="lastName" class="form-control payment-form" type="text" placeholder="Laksamana">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
-                                <input name="email" class="form-control" type="text" placeholder="susi@gmail.com">
+                                <input name="email" class="form-control payment-form" type="text" placeholder="susi@gmail.com">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Mobile Number</label>
-                                <input name="mobileNumber" class="form-control" type="text" placeholder="08134572926">
+                                <input name="mobileNumber" class="form-control payment-form" type="text" placeholder="08134572926">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address</label>
-                                <input name="address" class="form-control" type="text" placeholder="Ngagel Madya">
+                                <input name="address" class="form-control payment-form" type="text" placeholder="Ngagel Madya">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>POS Code</label>
-                                <input name="posCode" class="form-control" type="text" placeholder="60284">
+                                <input name="posCode" class="form-control payment-form" type="text" placeholder="60284">
                             </div>
                         </div>
                     </div>
@@ -228,34 +184,33 @@
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold">Rp.<?=$_SESSION['total']?></h5>
+                                <h5 id="total" class="font-weight-bold">Rp.<?=$_SESSION['total']?></h5>
                             </div>
                         </div>
                     </div>
                     <div class="card border-secondary mb-5">
                         <div class="card-header bg-secondary border-0">
-                            <h4 class="font-weight-semi-bold m-0">Payment</h4>
+                            <h4 class="font-weight-semi-bold m-0">Metode Pembayaran</h4>
                         </div>
                         <div class="card-body">
                             <div class="">
+                                <!-- <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input payment-form" name="payment" id="banktransfer" value="bank">
+                                    <label class="custom-control-label" for="banktransfer">BCA Virtual Account</label>
+                                </div> -->
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer" value="bank">
-                                    <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer" value="COD">
-                                    <label class="custom-control-label" for="banktransfer">COD</label>
+                                    <input type="radio" class="custom-control-input payment-form" name="payment" id="COD" value="COD">
+                                    <label class="custom-control-label" for="COD">COD</label>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
-                            <button name="order" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
+                            <button id="btnOrder" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
     <!-- Checkout End -->
 
 
@@ -296,7 +251,7 @@
     <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" ></script>
 </body>
 
 </html>

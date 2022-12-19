@@ -225,9 +225,8 @@
                         unset($_SESSION["total"]);
                         $_SESSION["total"] = $total;
                         ?>
-                        <button class="btn btn-block btn-secondary my-3 py-3">
-                            <a href="checkout.php" class="">Proceed To Checkout</a>
-                        </button>
+                        <a href="checkout.php" class="btn btn-block btn-secondary my-3 py-3">Proceed To Checkout</a>
+                   
                         <form action="" method="post">
                             <button name="cancel"class="btn btn-block btn-primary my-3 py-3"style="color: black" >
                                 <b>Cancel All Items</b>
